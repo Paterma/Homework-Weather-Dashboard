@@ -1,0 +1,40 @@
+
+
+body {
+background-color: linear-gradient(to right, blue, purple) !important;
+}
+
+h1 {
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    text-decoration: underline;
+    padding: 15px;
+}
+
+h3 {
+    font-family: 'Kalam', cursive;
+}
+
+#searchBtn {
+    display: inline;
+    padding: 5px;
+}
+
+.fiveDaySection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center/space-between;
+}
+
+#search {
+    background-color: rgb(111, 114, 133) !important;
+}
+
+.fiveDaySection {
+    justify-content: center;
+    width: 100%;
+}
+
+.searchCity {
+   
+}
