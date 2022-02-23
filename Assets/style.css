@@ -20,14 +20,17 @@ h3 {
     padding: 5px;
 }
 
-.col-4 {
+.col {
     /* display: flex; */
     /* flex-direction: row; */
     /* justify-content: center/space-between; */
     border: 1px solid black;
     height: 250px;
-    width: 100px;
+    width: 200px;
     display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    background-color: rgb(204, 204, 204);
 }
 
 #search {

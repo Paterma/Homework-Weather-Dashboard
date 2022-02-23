@@ -17,6 +17,9 @@ var weatherIcons = "http://openweathermap.org/img/wn/10d@2x.png"
 var previouseSearches = []
 
 
+
+
+$("#previousSearches").append(getItems)
 getItems();
 //Creating a function to save the previous searches
 function cityList(citySearch) {
@@ -26,7 +29,7 @@ localStorage.setItem("previousSearches", JSON.stringify(previouseSearches));
 // localStorage.setItem("citySearch")
 }
 
-
+//Creating a funtion to show the current weather
 //Make sure to call the event 
 searchBtn.click(function(event){
 event.preventDefault
@@ -34,6 +37,8 @@ console.log(searchCity.val())
 var apiUrlToday = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity.val() + "&units=imperial&exclude=minutely&Appid=075197792df88bd75204d2223f70356e"
 
 cityList(searchCity.val())
+
+
 
 fetch(apiUrlToday) 
 
@@ -45,7 +50,9 @@ fetch(apiUrlToday)
     // $("#city").empty();
     $("#city").append(showMoment.text("(" + moment().format("MMM Do YY")+")")
     );
-
+    
+    
+    //varibales for my data for temp, wind, humidity, and wind
     var cityValue = searchCity.val()
     var tempValue =data.main.temp
     var humidValue = data.main.humidity
@@ -57,10 +64,13 @@ fetch(apiUrlToday)
     $(".humidity").text(humidValue)
     $(".wind").text(windValue)
 
+    //appending that data to my HTML
+    $(".city").text("City: " + searchCity.val())
     $(".temperature").text("Temperature: " + data.main.temp + " °F");
     $(".humidity").text("Humidity: " + data.main.humidity + "%");
     $(".wind").text("Wind: " + data.wind.speed + " MPH");
 
+    //Setting up a varibale for the weather icons
     var icons = $("<img>");
     icons.attr(
     "src",
@@ -74,8 +84,32 @@ fetch(apiUrlToday)
 
     console.log(latitude)
 
+    //Creating a variable for the city name 
+   
+    
+//Setting up the UV index URL and conditions
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey + "&cnt=1";
+    
+    fetch(uvURL)
+        .then(function (response) {
+            if (response.data[0].value < 4 ) {
+                $(".uvIndex").setAttribute("class", "badge badge-success");
+            }
+            else if (response.data[0].value < 8) {
+                $(".uvIndex").setAttribute("class", "badge badge-warning");
+            }
+            else {
+                $(".uvIndex").setAttribute("class", "badge badge-danger");
+            }
+            
+            $(".uvIndex").text = response.data[0].value;
+            $(".uvIndex").append(response)
+        });
+
+
 })
 })
+()
 
 //Creating a function to store the weather data
 function weather(latitude, longitude) {
@@ -87,12 +121,11 @@ function weather(latitude, longitude) {
         .then(data => {console.log(data) //data is what we get from the API
 
         for (let i = 0; i < 6; i++) {
-        //     var next5Days = new Date(data.daily[i].dt * 1000);
-            
+            // var currentDay = new Date(data.daily[i].dt * 1000);
         // Date[i-1].textContent = next5Days.toLocaleDateString();
 
         
-
+//Getting the icons to go with the next 5 days
         var icons = $("<img>");
         icons.attr(
         "src",
@@ -108,7 +141,7 @@ function weather(latitude, longitude) {
         );
         $("#weatherIcon2").empty();
         $("#weatherIcon2").append(icons);
-       
+
         var icons = $("<img>");
         icons.attr(
         "src",
@@ -135,7 +168,7 @@ function weather(latitude, longitude) {
         
         
 
-    var tempValue1 =data.daily[1].temp
+    var tempValue1 =data.daily[i].temp
     // var humidValue1 = data.daily[i].humidity
     // var windValue1 = data.daily[i].wind.speed
         
@@ -143,7 +176,7 @@ function weather(latitude, longitude) {
     // $("humidity1").text(humidValue1)
     // $("wind1").text(windValue1)
 
-    $(".temperature1").text("Temperature: " + data.daily[1].temp + " °F");
+    $(".temperature1").text("Temperature: " + data.daily[i].temp + " °F");
     // $("humidity1").text("Humidity: " + data.daily[i].humidity + "%");
     // $("wind1").text("Wind: " + data.daily[i].wind.speed + " MPH");
     
@@ -160,12 +193,13 @@ $("#day1").append(moment().format('dddd'))
 $("#day2").append(moment().format('dddd'))
 $("#day3").append(moment().format('dddd'))
 $("#day4").append(moment().format('dddd'))
-$("#day5").append(moment().weekday(0));
+$("#day5").append(moment().format('dddd'))
 
-    function getItems() {
-        $(searchCity.val()).text(JSON.parse(localStorage.getItem("previousSearches")));
+    
 
-        // $("#previousSearches").text(getItems)
+function getItems() {
+$(searchCity.val()).text(JSON.parse(localStorage.getItem("previousSearches")));
+
     }
     //USE .SPLICE to only show 5 days
 
