@@ -44,7 +44,8 @@
                 </div>
             </div>
             <div id="city" class="col-9 pb-4 pt-4">
-                
+                <div id="moment"></div>
+                <span id='weatherIcon'></span>
                 <div class="row pb-3 mr-2 ml-2">
                     <div class="weatherDisplay">
                     <h1 class="city"></h1>
@@ -57,16 +58,47 @@
                         
                     </div>
                 </div>
-                <div class="row pb-2 pt-1">
+                <div class="row pb-5 pt-5">
                     <div class="col-12 ml-2">
-                        <h3>5-Day Forecast:</h3>
-                        <div class="fiveDaySection">
-                        <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                        <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                        <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                        <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                        <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                        </div>
+                        <h3>5-Day Forecast:</h3> 
+                        <div  class="row pb-5 mr-2 ml-5">
+                            <div id="fiveDaySection" class="row justify-content-center">
+                                <div class="col-4">
+                                    <span id='weatherIcon1'></span>
+                                    <div id="day1"></div>
+                                    <p class="temperature1"></p>
+                                    <p class="humidity1"></p>
+                                    <p class="wind1"></p>
+                                </div>
+                                <div class="col-4">
+                                    <span id='weatherIcon2'></span>
+                                    <div id="day2"></div>
+                                    <p class="temperature2"></p>
+                                    <p class="humidity2"></p>
+                                    <p class="wind2"></p>
+                                </div>
+                                <div class="col-4">
+                                    <span id='weatherIcon3'></span>
+                                    <div id="day3"></div>
+                                    <p class="temperature3"></p>
+                                    <p class="humidity3"></p>
+                                    <p class="wind3"></p>
+                                </div>
+                                <div class="col-4">
+                                    <div id="day4"></div>
+                                    <span id='weatherIcon4'></span>
+                                    <p class="temperature4"></p>
+                                    <p class="humidity4"></p>
+                                    <p class="wind4"></p>
+                                </div>
+                                <div class="col-4">
+                                    <div id="day5"></div>
+                                    <span id='weatherIcon5'></span>
+                                    <p class="temperature5"></p>
+                                    <p class="humidity5"></p>
+                                    <p class="wind5"></p>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <div id="forecastDisplay" class="row pl-2">
