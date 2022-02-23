@@ -17,6 +17,7 @@ var weatherIcons = "http://openweathermap.org/img/wn/10d@2x.png"
 var previouseSearches = []
 
 
+$("#moment").append(moment().format('MM/DD/YYYY'));
 
 
 $("#previousSearches").append(getItems)
@@ -39,32 +40,29 @@ var apiUrlToday = "https://api.openweathermap.org/data/2.5/weather?q=" + searchC
 cityList(searchCity.val())
 
 
+var cityValue = searchCity.val() 
+$("#city").text(cityValue)
 
 fetch(apiUrlToday) 
 
 //getting the URL for the weather today
 .then(response => response.json()) //.then is a promise to get a response
 .then(data => {console.log(data) //data is what we get from the API
-
-    var showMoment =$("<h4>");
-    // $("#city").empty();
-    $("#moment").append(moment().format('MM/DD/YYYY'));
+    
     
     
     //varibales for my data for temp, wind, humidity, and wind
-    var cityValue = searchCity.val()
+
     var tempValue =data.main.temp
     var humidValue = data.main.humidity
-    var windValue = data.wind
+    var windValue = data.wind   
 
-
-    $(".city").text(cityValue)
     $(".temperature").text(tempValue)
     $(".humidity").text(humidValue)
     $(".wind").text(windValue)
 
     //appending that data to my HTML
-    $(".city").text("City: " + searchCity.val())
+    $("#city").text("City: " + searchCity.val())
     $(".temperature").text("Temperature: " + data.main.temp + " °F");
     $(".humidity").text("Humidity: " + data.main.humidity + "%");
     $(".wind").text("Wind: " + data.wind.speed + " MPH");
@@ -84,10 +82,10 @@ fetch(apiUrlToday)
     console.log(latitude)
 
     //Creating a variable for the city name 
-   
+
     
 //Setting up the UV index URL and conditions
-    var uvURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey + "&cnt=1";
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + "075197792df88bd75204d2223f70356e" + "&cnt=1";
     
     fetch(uvURL)
         .then(function (response) {
@@ -103,6 +101,8 @@ fetch(apiUrlToday)
             
             $(".uvIndex").text = response.data[0].value;
             $(".uvIndex").append(response)
+
+            console.log(uvURL)
         });
 
 
@@ -196,7 +196,7 @@ $("#day5").append(moment().add(5, 'days').format('MM/DD/YYYY'));
     
 
 function getItems() {
-$(searchCity.val()).text(JSON.parse(localStorage.getItem("previousSearches")));
+$(searchCity.val()).text(JSON.parse(localStorage.getItem("previousSearches"))) || [];
 
     }
     //USE .SPLICE to only show 5 days
