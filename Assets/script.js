@@ -48,8 +48,7 @@ fetch(apiUrlToday)
 
     var showMoment =$("<h4>");
     // $("#city").empty();
-    $("#city").append(showMoment.text("(" + moment().format("MMM Do YY")+")")
-    );
+    $("#moment").append(moment().format('MM/DD/YYYY'));
     
     
     //varibales for my data for temp, wind, humidity, and wind
@@ -109,7 +108,6 @@ fetch(apiUrlToday)
 
 })
 })
-()
 
 //Creating a function to store the weather data
 function weather(latitude, longitude) {
@@ -122,7 +120,7 @@ function weather(latitude, longitude) {
 
         for (let i = 0; i < 6; i++) {
             // var currentDay = new Date(data.daily[i].dt * 1000);
-        // Date[i-1].textContent = next5Days.toLocaleDateString();
+        // Date[i-1].text = next5Days.toLocaleDateString();
 
         
 //Getting the icons to go with the next 5 days
@@ -188,12 +186,12 @@ function weather(latitude, longitude) {
 }
 
 
-var newDate = moment().weekday(2);
-$("#day1").append(moment().format('dddd'))
-$("#day2").append(moment().format('dddd'))
-$("#day3").append(moment().format('dddd'))
-$("#day4").append(moment().format('dddd'))
-$("#day5").append(moment().format('dddd'))
+// var newDate = moment().weekday(2);
+$("#day1").append(moment().add(1, 'days').format('MM/DD/YYYY'));
+$("#day2").append(moment().add(2, 'days').format('MM/DD/YYYY'));
+$("#day3").append(moment().add(3, 'days').format('MM/DD/YYYY'));
+$("#day4").append(moment().add(4, 'days').format('MM/DD/YYYY'));
+$("#day5").append(moment().add(5, 'days').format('MM/DD/YYYY'));
 
     
 
