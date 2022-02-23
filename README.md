@@ -31,3 +31,4 @@ I created a weather dashboard that updates in real time using the OpenWeatherAPI
 * The URL of the functional, deployed application: https://paterma.github.io/Homework-Weather-Dashboard/
 
 * The URL of the GitHub repositoryhttps://github.com/Paterma/Homework-Weather-Dashboard
+
