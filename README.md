@@ -32,3 +32,4 @@ I created a weather dashboard that updates in real time using the OpenWeatherAPI
 
 * The URL of the GitHub repositoryhttps://github.com/Paterma/Homework-Weather-Dashboard
 
+![Weather screenshot](Assets/weather-screenshot.PNG)
